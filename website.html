@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine's Date</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(to right, #ff4e78, #ff7e5f);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px;
+      background-color: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      position: relative;
+      z-index: 2; /* Ensure the content stays above the hearts */
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #ff4e78;
+    }
+
+    button {
+      display: inline-block;
+      padding: 12px 24px;
+      font-size: 18px;
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      transition: transform 0.3s, background-color 0.3s;
+      margin: 10px;
+      position: relative;
+      z-index: 2; /* Ensure the buttons stay above the hearts */
+    }
+
+    #yesButton {
+      background-color: #ff4e78;
+      color: #fff;
+      margin-right: 10px; /* Adjusted margin for better proportions */
+    }
+
+    #noButton {
+      background-color: #ff7e5f;
+      color: #fff;
+    }
+
+    .panda-emoji {
+      display: inline-block;
+      margin-right: 8px;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes moveAway {
+      0% {
+        transform: translate(0, 0);
+      }
+      20% {
+        transform: translate(20px, 20px);
+      }
+      40% {
+        transform: translate(-20px, -20px);
+      }
+      60% {
+        transform: translate(20px, -20px);
+      }
+      80% {
+        transform: translate(-20px, 20px);
+      }
+      100% {
+        transform: translate(0, 0);
+      }
+    }
+
+    /* Add heart shapes to the background */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('heart.gif') repeat; /* Replace with the path to your animated heart GIF */
+      pointer-events: none; /* Ensure it doesn't interfere with button clicks */
+      z-index: 1; /* Place it behind the content */
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Will you be my Valentine? <span class="panda-emoji">❤️🐼</span></h1>
+  <button id="yesButton">Yes, I'd love to! <span class="panda-emoji">🥰🎉</span></button>
+  <button id="noButton">Sorry, not this time <span class="panda-emoji">😔🐼</span></button>
+</div>
+
+<script>
+  let noButton = document.getElementById('noButton');
+
+  noButton.addEventListener('mouseenter', function() {
+    moveButton();
+  });
+
+  noButton.addEventListener('click', function() {
+    moveButton();
+  });
+
+  function moveButton() {
+    let newX = Math.random() * 30 + 'vw'; // Restricting movement to 30% of the viewport width
+    let newY = Math.random() * 30 + 'vh'; // Restricting movement to 30% of the viewport height
+
+    noButton.style.left = newX;
+    noButton.style.top = newY;
+  }
+
+  document.getElementById('yesButton').addEventListener('click', function() {
+    window.location.href = 'congratulations.html';
+  });
+</script>
+
+</body>
+</html>
